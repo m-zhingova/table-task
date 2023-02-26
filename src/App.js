@@ -3,7 +3,7 @@ import { Transactions } from "./Transactions/Transactions";
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <Transactions />
     </div>
   );

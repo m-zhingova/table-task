@@ -1,5 +1,7 @@
 import React from "react";
 import { getTransactions } from "../api/transactionsApi";
+import { TransactionsTable } from "./components/TransactionsTable";
+import "./Transactions.css"
 
 export const Transactions = () => {
   const [transactions, setTransactions] = React.useState(null);
@@ -11,13 +13,9 @@ export const Transactions = () => {
       .catch((error) => console.error(error));
   }, []);
 
-  return (
-    <>
-      {transactions && transactions.length > 0 ? (
-        transactions.map((transaction) => <div>{transaction.card_holder} </div>)
-      ) : (
-        <div>Loading ..</div>
-      )}
-    </>
+  return transactions ? (
+    <TransactionsTable transactions={transactions} />
+  ) : (
+    <div>Loading ...</div>
   );
 };
