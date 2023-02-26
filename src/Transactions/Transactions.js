@@ -8,7 +8,6 @@ export const Transactions = () => {
 
   React.useEffect(() => {
     getTransactions()
-      .then((response) => response.json())
       .then((data) => setTransactions(data.payment_transactions))
       .catch((error) => console.error(error));
   }, []);
