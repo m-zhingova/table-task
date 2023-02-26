@@ -1,6 +1,7 @@
 import React from "react";
 import { TransactionsTableCell } from "./TransactionsTableCell";
 import { DateFormatter } from "../../components/DateFormatter";
+import { Monetary } from "../../components/Monetary";
 import { transactionTypesMap } from "../../Constants/transactionTypes";
 import { getErrorClass } from "../../Utils/getErrorClass";
 import "./TransactionsTableRow.css";
@@ -21,7 +22,9 @@ export const TransactionsTableRow = ({ transaction }) => {
       </TransactionsTableCell>
       <TransactionsTableCell>{transaction.card_holder}</TransactionsTableCell>
       <TransactionsTableCell>{transaction.card_number}</TransactionsTableCell>
-      <TransactionsTableCell>{transaction.amount}</TransactionsTableCell>
+      <TransactionsTableCell>
+        <Monetary amount={transaction.amount} currency={transaction.currency} />
+      </TransactionsTableCell>
     </div>
   );
 };
