@@ -1,6 +1,8 @@
 import React from "react";
 import { TransactionsTableCell } from "./TransactionsTableCell";
 import { DateFormatter } from "../../components/DateFormatter";
+import { transactionTypesMap } from "../../Constants/transactionTypes";
+import { getErrorClass } from "../../Utils/getErrorClass";
 import "./TransactionsTableRow.css";
 
 export const TransactionsTableRow = ({ transaction }) => {
@@ -11,8 +13,12 @@ export const TransactionsTableRow = ({ transaction }) => {
         <DateFormatter date={transaction.created_at} />
       </TransactionsTableCell>
       <TransactionsTableCell>{transaction.merchant_name}</TransactionsTableCell>
-      <TransactionsTableCell>{transaction.type}</TransactionsTableCell>
-      <TransactionsTableCell>{transaction.error_class}</TransactionsTableCell>
+      <TransactionsTableCell>
+        {transactionTypesMap[transaction.type]}
+      </TransactionsTableCell>
+      <TransactionsTableCell>
+        {getErrorClass(transaction.error_class)}
+      </TransactionsTableCell>
       <TransactionsTableCell>{transaction.card_holder}</TransactionsTableCell>
       <TransactionsTableCell>{transaction.card_number}</TransactionsTableCell>
       <TransactionsTableCell>{transaction.amount}</TransactionsTableCell>
