@@ -1,10 +1,11 @@
 import React from "react";
 import { getTransactions } from "../api/transactionsApi";
 import { TransactionsTable } from "./components/TransactionsTable";
-import "./Transactions.css"
+import "./Transactions.css";
+import { TransactionContext } from "../TransactionProvider/TransactionContext";
 
 export const Transactions = () => {
-  const [transactions, setTransactions] = React.useState(null);
+  const {transactions, setTransactions} = React.useContext(TransactionContext);
 
   React.useEffect(() => {
     getTransactions()

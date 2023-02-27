@@ -4,13 +4,20 @@ import { DateFormatter } from "../../components/DateFormatter";
 import { Monetary } from "../../components/Monetary";
 import { transactionTypesMap } from "../../Constants/transactionTypes";
 import { getErrorClass } from "../../Utils/getErrorClass";
+import { useNavigate } from "react-router-dom";
 import "./TransactionsTableRow.css";
 
+
 export const TransactionsTableRow = ({ transaction }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/transactions/${transaction.id}`)
+  }
+
   return (
     <div className="transaction-table-row">
       <TransactionsTableCell>{transaction.status}</TransactionsTableCell>
-      <TransactionsTableCell>
+      <TransactionsTableCell onClick={handleClick}>
         <DateFormatter date={transaction.created_at} />
       </TransactionsTableCell>
       <TransactionsTableCell>{transaction.merchant_name}</TransactionsTableCell>
@@ -27,4 +34,4 @@ export const TransactionsTableRow = ({ transaction }) => {
       </TransactionsTableCell>
     </div>
   );
-};
+}; 
